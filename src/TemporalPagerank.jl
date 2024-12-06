@@ -22,9 +22,9 @@ function temporal_pagerank(alpha, beta, files)
                 s[to] = get(s, to, 0) + s[from]*alpha
 
                 s[to] = get(s, to, 0) + get(from, to, 0)*(1 - beta)*alpha
-                s[from] = get(s, from, 0)*beta
-                edge = split(readline(stream), ",")
+                s[from] = get(s, from, 0)*beta  
             end
+            edge = split(readline(stream), ",")
         end
     end
     return r
