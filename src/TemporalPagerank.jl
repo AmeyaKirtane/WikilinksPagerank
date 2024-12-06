@@ -13,7 +13,7 @@ function temporal_pagerank(alpha, beta, files)
     for file in files
         stream = open(joinpath(edits_dir, file*".txt"), "r")
         edge = split(readline(stream), ",")
-        while (length(edge) > 0)
+        while (length(edge) > 1)
             if (edge[3] == "init" || edge[3] == "add")
                 from = parse(Int, edge[2])
                 to = parse(Int, edge[4])
@@ -43,6 +43,6 @@ for year in 2001:2001
 end
 
 r = temporal_pagerank(0.85, 0.99, f)
-v = [r[i] for i in 1:length(r)]
-v = sort(v, rev=true)
-println(v[1:10])
+val_key_list = [(v, k) for (k, v) in r]
+sorted_list = sort(val_key_list, by = x -> x[1])
+println(sorted_list[1:10])
